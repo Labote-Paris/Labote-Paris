@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "diagnostic-hero",
+      "settings": {
+        "eyebrow": "",
+        "title": "Diagnostic de peau",
+        "text": "",
+        "background": "",
+        "padding_top": 56,
+        "padding_bottom": 48,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 28
+      }
+    },
+    "quiz": {
+      "type": "diagnostic-quiz-embed",
+      "settings": {
+        "quiz_id": "AoH66Bo",
+        "autoscroll": false,
+        "min_height": 720,
+        "max_width": 0,
+        "padding_top": 0,
+        "padding_bottom": 56,
+        "padding_bottom_mobile": 32
+      }
+    }
+  },
+  "order": ["hero", "quiz"]
+}

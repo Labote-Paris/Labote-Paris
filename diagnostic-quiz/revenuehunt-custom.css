@@ -1,0 +1,193 @@
+/* ═══════════════════════════════════════════════════════════════
+   LABOTÉ — Charte 2026 pour le quiz RevenueHunt « Diagnostic » (AoH66Bo)
+   À coller dans : Quiz Builder → Quiz Design → Custom CSS (global).
+   Habillage uniquement : aucun texte, produit ni logique n'est modifié.
+
+   Les sélecteurs RevenueHunt n'ont pas pu être inspectés depuis
+   l'environnement cloud (revenuehunt.com bloqué) : ce fichier vise
+   les éléments HTML génériques (titres, boutons, select, img) pour
+   être robuste. Les blocs « À AJUSTER » sont à confirmer au clic droit
+   → Inspecter dans l'aperçu du quiz.
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+  --ax-navy: #071d49;
+  --ax-navy-dark: #041331;
+  --ax-ink: #141414;
+  --ax-body-text: #2a2a2a;
+  --ax-muted: #5a5a5a;
+  --ax-grey: #f3f4f6;
+  --ax-greyblue: #eef1f6;
+  --ax-gold: #a89968;
+  --ax-eyebrow: #6b89a8;
+  --ax-line: rgba(7, 29, 73, 0.18);
+  --ax-display: Copperplate, 'Copperplate Gothic Light', Cinzel, serif;
+  --ax-sans: 'DM Sans', sans-serif;
+  --ax-ease: cubic-bezier(0, 0, 0.3, 1);
+}
+
+/* ── 1. Typo de base : une seule famille (DM Sans) partout ── */
+html, body, body *:not(i):not([class*="icon"]):not(svg):not(path) {
+  font-family: var(--ax-sans) !important;
+}
+body {
+  color: var(--ax-body-text) !important;
+  -webkit-font-smoothing: antialiased;
+}
+p, li { line-height: 1.6 !important; }
+
+/* ── 2. Titres : Copperplate / Cinzel 700, capitales, bleu charte ── */
+h1, h2, h3,
+h1 *, h2 *, h3 * {
+  font-family: var(--ax-display) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em !important;
+  color: var(--ax-navy) !important;
+  line-height: 1.2 !important;
+}
+h1 { font-size: clamp(26px, 3.4vw, 40px) !important; }
+h2 { font-size: clamp(20px, 2.4vw, 28px) !important; }
+h3 { font-size: 15px !important; letter-spacing: 0.04em !important; }
+h4, h5, h6 {
+  font-family: var(--ax-sans) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
+  color: var(--ax-eyebrow) !important;
+}
+
+/* ── 3. Boutons : carrés, bleu #071d49, capitales 13 px (= .ax-btn) ── */
+button, .btn, [class*="button"], a[class*="btn"], input[type="submit"] {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--ax-sans) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase;
+  line-height: 1.2 !important;
+  transition: background-color .3s var(--ax-ease), color .3s var(--ax-ease), border-color .3s var(--ax-ease) !important;
+}
+/* Bouton principal (Commencer, Suivant, Ajouter…) */
+button:not([class*="answer"]):not([class*="option"]):not([class*="back"]):not([class*="prev"]),
+input[type="submit"] {
+  background-color: var(--ax-navy) !important;
+  border: 1px solid var(--ax-navy) !important;
+  color: #fff !important;
+  padding: 16px 30px !important;
+  min-height: 48px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px;
+}
+button:not([class*="answer"]):not([class*="option"]):hover,
+input[type="submit"]:hover { background-color: var(--ax-navy-dark) !important; }
+/* Tout le contenu du bouton sur la même ligne de base (ex. « AJOUTER  29,00 € ») */
+button * {
+  font-family: var(--ax-sans) !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  vertical-align: baseline !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  color: inherit !important;
+}
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--ax-navy) !important;
+  outline-offset: 2px;
+}
+
+/* ── 4. Réponses (cartes de choix) : bordure fine, sélection bleue ──
+   À AJUSTER : remplacer [class*="answer"] / [class*="option"] par la
+   classe réelle des réponses si elle diffère. */
+[class*="answer"], [class*="option"]:not(option) {
+  border-radius: 0 !important;
+  border: 1px solid var(--ax-line) !important;
+  background: #fff !important;
+  color: var(--ax-ink) !important;
+  box-shadow: none !important;
+  transition: border-color .3s var(--ax-ease), background-color .3s var(--ax-ease) !important;
+}
+[class*="answer"]:hover, [class*="option"]:not(option):hover { border-color: var(--ax-navy) !important; }
+[class*="answer"][class*="selected"], [class*="answer"][class*="active"], [class*="answer"][aria-pressed="true"],
+[class*="option"][class*="selected"], [class*="option"][class*="active"] {
+  background: var(--ax-navy) !important;
+  border-color: var(--ax-navy) !important;
+  color: #fff !important;
+}
+[class*="answer"][class*="selected"] *, [class*="answer"][class*="active"] *,
+[class*="option"][class*="selected"] *, [class*="option"][class*="active"] * { color: #fff !important; }
+
+/* Bouton retour / précédent : lien discret */
+[class*="back"], [class*="prev"] {
+  background: transparent !important;
+  border: none !important;
+  color: var(--ax-navy) !important;
+  padding: 0 0 2px !important;
+  border-bottom: 1px solid rgba(7, 29, 73, .4) !important;
+}
+
+/* ── 5. Barre de progression : fine, bleue ── */
+[class*="progress"] { border-radius: 0 !important; background: var(--ax-greyblue) !important; height: 3px !important; }
+[class*="progress"] > * { border-radius: 0 !important; background: var(--ax-navy) !important; height: 100% !important; }
+
+/* ── 6. Champs (email, prénom) et sélecteur de variante ── */
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  border-radius: 0 !important;
+  border: 1px solid var(--ax-line) !important;
+  font-family: var(--ax-sans) !important;
+  font-size: 15px !important;
+  color: var(--ax-ink) !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  min-height: 48px;
+}
+select {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 12px 0 0 !important;
+  padding: 0 40px 0 16px !important;
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23071d49' stroke-width='1.5'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+}
+a { color: var(--ax-navy) !important; text-underline-offset: 3px; }
+
+/* ── 7. Page de résultats : cartes produit façon .ax-pcard ──
+   À AJUSTER : [class*="product"] vise le bloc « Product » de RevenueHunt. */
+[class*="product"] img {
+  background: var(--ax-grey) !important;
+  border-radius: 0 !important;
+  width: 100%;
+  aspect-ratio: 32 / 34;
+  object-fit: cover;
+}
+[class*="product"] { text-align: left !important; border-radius: 0 !important; box-shadow: none !important; }
+[class*="product"] h1, [class*="product"] h2, [class*="product"] h3,
+[class*="product"] [class*="title"], [class*="product"] [class*="name"] {
+  font-family: var(--ax-display) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase;
+  color: var(--ax-navy) !important;
+  text-align: left !important;
+  line-height: 1.4 !important;
+  margin: 18px 0 6px !important;
+}
+[class*="product"] p, [class*="product"] [class*="description"] {
+  font-size: 13px !important;
+  color: var(--ax-muted) !important;
+  text-align: left !important;
+}
+[class*="product"] [class*="price"] { font-family: var(--ax-sans) !important; font-weight: 700 !important; }
+/* Cartes de même hauteur : le bouton est poussé en bas → alignement d'une carte à l'autre */
+[class*="product"] { display: flex; flex-direction: column; }
+[class*="product"] button { margin-top: auto !important; width: 100% !important; }
