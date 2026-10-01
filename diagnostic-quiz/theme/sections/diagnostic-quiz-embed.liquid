@@ -1,0 +1,40 @@
+{%- comment -%}
+  Diagnostic — conteneur du quiz RevenueHunt (iframe).
+  Même balisage que l'ancien bloc Custom Liquid (div .rh-widget.rh-inline lu par le script RevenueHunt),
+  sans la hauteur fixe de 600 px. Pont panier : assets/diagnostic-quiz.js.
+{%- endcomment -%}
+{{ 'diagnostic-quiz.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="dq-embed"
+  style="--dq-pt: {{ section.settings.padding_top }}px; --dq-pb: {{ section.settings.padding_bottom }}px; --dq-pb-m: {{ section.settings.padding_bottom_mobile }}px; --dq-min-h: {{ section.settings.min_height }}px;{% if section.settings.max_width > 0 %} --dq-max: {{ section.settings.max_width }}px;{% endif %}"
+>
+  <div class="dq-embed__wrap">
+    <div
+      id="diagnostic-quiz-wrap"
+      class="rh-widget rh-inline"
+      data-url="https://admin.revenuehunt.com/public/quiz/{{ section.settings.quiz_id }}"
+      data-autoscroll="{{ section.settings.autoscroll }}"
+    ></div>
+  </div>
+</div>
+
+<script src="{{ 'diagnostic-quiz.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Diagnostic — quiz",
+  "tag": "section",
+  "class": "diagnostic-quiz-section",
+  "settings": [
+    { "type": "text", "id": "quiz_id", "label": "ID du quiz RevenueHunt", "default": "AoH66Bo", "info": "Pour tester une copie du quiz, remplacer l'ID ici." },
+    { "type": "checkbox", "id": "autoscroll", "label": "Défilement auto entre les questions", "default": false },
+    { "type": "range", "id": "min_height", "label": "Hauteur minimale (desktop)", "min": 480, "max": 1200, "step": 20, "unit": "px", "default": 720, "info": "Sur mobile, le quiz prend la hauteur de l'écran." },
+    { "type": "range", "id": "max_width", "label": "Largeur max (0 = largeur de page)", "min": 0, "max": 1600, "step": 20, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Espace haut", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Espace bas (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Espace bas (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 32 }
+  ],
+  "presets": [{ "name": "Diagnostic — quiz" }]
+}
+{% endschema %}

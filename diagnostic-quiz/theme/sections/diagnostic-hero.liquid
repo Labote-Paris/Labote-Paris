@@ -1,0 +1,58 @@
+{%- comment -%}
+  Diagnostic — intro native de /pages/diagnostic-quiz (charte 2026, tokens --ax-*).
+  Tous les textes sont éditables dans le customizer ; les points de réassurance sont des blocs.
+  CSS : assets/diagnostic-quiz.css
+{%- endcomment -%}
+{{ 'diagnostic-quiz.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="dq-hero"
+  style="--dq-pt: {{ section.settings.padding_top }}px; --dq-pb: {{ section.settings.padding_bottom }}px; --dq-pt-m: {{ section.settings.padding_top_mobile }}px; --dq-pb-m: {{ section.settings.padding_bottom_mobile }}px;{% if section.settings.background != blank %} --dq-bg: {{ section.settings.background }};{% endif %}"
+>
+  <div class="dq-hero__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="dq-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="dq-hero__title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="dq-hero__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <ul class="dq-hero__points">
+        {%- for block in section.blocks -%}
+          <li class="dq-hero__point" {{ block.shopify_attributes }}>{{ block.settings.label }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Diagnostic — intro",
+  "tag": "section",
+  "class": "diagnostic-hero-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Surtitre" },
+    { "type": "text", "id": "title", "label": "Titre (H1)", "default": "Diagnostic de peau" },
+    { "type": "richtext", "id": "text", "label": "Texte" },
+    { "type": "color", "id": "background", "label": "Fond", "info": "Vide = gris-bleu charte (#eef1f6)" },
+    { "type": "header", "content": "Espacements" },
+    { "type": "range", "id": "padding_top", "label": "Haut (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bas (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Haut (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bas (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point de réassurance",
+      "settings": [ { "type": "text", "id": "label", "label": "Texte" } ]
+    }
+  ],
+  "presets": [{ "name": "Diagnostic — intro" }]
+}
+{% endschema %}
