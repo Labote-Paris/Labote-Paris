@@ -191,3 +191,16 @@ a { color: var(--ax-navy) !important; text-underline-offset: 3px; }
 /* Cartes de même hauteur : le bouton est poussé en bas → alignement d'une carte à l'autre */
 [class*="product"] { display: flex; flex-direction: column; }
 [class*="product"] button { margin-top: auto !important; width: 100% !important; }
+
+/* Carte produit seule dans son bloc (ex. « Soins spécifiques ») : même largeur qu'une colonne */
+[class*="product"]:only-child {
+  max-width: 440px !important;
+  width: 100% !important;
+}
+[class*="product"] img {
+  max-width: 440px !important;
+  margin-left: 0 !important;
+}
+@media (max-width: 749px) {
+  [class*="product"]:only-child { max-width: none !important; }
+}
